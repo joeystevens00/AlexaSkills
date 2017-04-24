@@ -19,7 +19,7 @@ exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
     // alexa.appId = 'amzn1.echo-sdk-ams.app.1234';
     // alexa.dynamoDBTableName = 'YourTableName'; // creates new table for session.attributes
-    person=event.request.intent.slots.Person.value
+    person=event.request.intent.slots["Person"].value
     alexa.registerHandlers(handlers);
     alexa.execute();
 };
