@@ -1,4 +1,5 @@
 import praw
+import os
 #import pyssml.PySSML # Hackery to fix a misconfigured module 
 						 # in the directory pyssml get the PySSML module
 from html.parser import HTMLParser
@@ -19,11 +20,16 @@ def strip_tags(html):
     return s.get_data()
 def lambda_handler(event, context):
     # TODO implement
-    reddit = praw.Reddit(client_id='_C7dnicU51oy3w',
-                     client_secret='m6Y7Hv_aR3WCAix0Z1yFcna6F9Q',
-                     password='0IoV&s$RsppE',
+    client_id=os.getenv("REDDIT_CLIENT_ID")
+    client_secret=os.getenv("REDDIT_CLIENT_SECRET")
+    password=os.getenv("REDDIT_PASSWORD")
+    username=os.getenv("REDDIT_USERNAME")
+    reddit = praw.Reddit(client_id=client_id,
+                     client_secret=client_secret,
+                     password=password,
                      user_agent='testscript',
-                     username='f42e9c26-6e84-486d-b')
+                     username=username)
+
 
     randomSub=reddit.random_subreddit(nsfw=False)
     randomSubmission=randomSub.random()
