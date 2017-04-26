@@ -1,0 +1,5 @@
+#!/bin/bash
+cd src/; zip -r ../dist/out.zip .; cd ..
+aws lambda update-function-code \
+	--function-name arn:aws:lambda:us-east-1:079419317392:function:test \
+	--zip-file fileb://dist/out.zip
